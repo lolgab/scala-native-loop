@@ -2,8 +2,10 @@ version: 2.1
 
 jobs:
   build_test_publish:
-    machine: true
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
+      - checkout
       - restore_cache:
           keys:
             - sbt-cache-{{ .Branch }}-{{ checksum "project/plugins.sbt" }}-{{ checksum "build.sbt" }}-{{ .Environment.CIRCLE_SHA1 }}
